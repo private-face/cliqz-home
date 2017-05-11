@@ -13,7 +13,7 @@
   },
   "devDependencies": {
     "@glimmer/application": "^0.4.0",
-    "@glimmer/application-pipeline": "^0.6.0-beta.2",
+    "@glimmer/application-pipeline": "^0.6.9",
     "@glimmer/blueprint": "^0.1.12",
     "@glimmer/component": "^0.3.8",
     "@glimmer/resolver": "^0.3.0",
@@ -21,10 +21,14 @@
     "ember-cli": "github:ember-cli/ember-cli",
     "ember-cli-inject-live-reload": "^1.6.1",
     "ember-cli-uglify": "^1.2.0",
+    "rollup-plugin-commonjs": "^8.0.2",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "spanan": "1.2.0",
     "typescript": "^2.2.2"
   },
   "engines": {
     "node": ">= 4.0"
   },
-  "private": true
+  "private": true,
+  "dependencies": {}
 }
