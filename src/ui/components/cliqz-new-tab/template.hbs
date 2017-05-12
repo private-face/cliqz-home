@@ -4,7 +4,11 @@
   </nav>
   <section id="content">
     <section id="top">
-      aaa
+      <ul>
+        {{#each dials.history key="@index" as |dial|}}
+          <li>{{dial.url}}</li>
+        {{/each}}
+    </ul>
     </section>
     <section id="middle">
       bbb
