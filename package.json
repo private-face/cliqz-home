@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build": "ember build",
-    "start": "ember server",
+    "start": "ember server -p 3000",
     "test": "ember test"
   },
   "devDependencies": {
