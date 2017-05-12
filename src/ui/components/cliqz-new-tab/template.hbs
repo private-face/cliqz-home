@@ -8,13 +8,21 @@
         {{#each dials.history key="@index" as |dial|}}
           <li>{{dial.url}}</li>
         {{/each}}
-    </ul>
+        <hr/>
+        {{#each dials.custom key="@index" as |dial|}}
+          <li>{{dial.url}}</li>
+        {{/each}}
+      </ul>
     </section>
     <section id="middle">
       bbb
     </section>
     <section id="bottom">
-      cc
+      <ul>
+        {{#each news key="@index" as |article|}}
+          <li>{{article.url}}</li>
+        {{/each}}
+      </ul>
     </section>
   </section>
   <nav id="nav-right">
