@@ -1,7 +1,11 @@
 $color-cliqz-black: #1A1A25;
+$speed-dial-count: 5;
+$speed-dial-width: 166px;
+$content-width: calc(#{$speed-dial-count} * #{$speed-dial-width});
 
 @import 'speed-dial-row';
 @import 'speed-dial';
+@import 'url-bar';
 
 html, body, #app {
   padding: 0;
@@ -38,12 +42,6 @@ html, body, #app {
       flex-direction: column;
       justify-content: center;
     }
-
-    #middle {
-      height: 50px;
-      background-color: red;
-    }
-
   }
 }
 

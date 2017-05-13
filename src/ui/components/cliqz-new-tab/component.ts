@@ -2,7 +2,7 @@ import Component, { tracked } from "@glimmer/component";
 import CliqzService from "../cliqz-service";
 
 export default class CliqzNewTab extends Component {
-  cliqz: CliqzService = new CliqzService();
+  cliqz: CliqzService = CliqzService.getInstance();
 
   @tracked locale: String;
   @tracked dials;
