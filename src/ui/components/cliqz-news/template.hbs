@@ -1,0 +1,21 @@
+<div class="cliqz-news">
+  {{#each @model key="@index" as |article|}}
+    <a class="article" href={{article.url}}>
+      <div class="side-front">
+        <cliqz-logo @logo={{article.logo}}></cliqz-logo>
+        <span class="source-name">
+          {{article.displayUrl}}
+        </span>
+        <p class="title">
+          {{article.title}}
+        </p>
+      </div>
+      <div class="side-back">
+        <p class="abstract">
+          {{article.description}}
+        </p>
+        <a>Read more</a>
+      </div>
+    </a>
+  {{/each}}
+</div>

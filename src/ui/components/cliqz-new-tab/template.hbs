@@ -11,11 +11,7 @@
       <url-bar></url-bar>
     </section>
     <section id="bottom">
-      <ul>
-        {{#each news key="@index" as |article|}}
-          <li>{{article.url}}</li>
-        {{/each}}
-      </ul>
+      <cliqz-news @model={{news}}></cliqz-news>
     </section>
   </section>
   <nav id="nav-right">

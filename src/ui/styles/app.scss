@@ -1,4 +1,5 @@
 $color-cliqz-black: #1A1A25;
+$color-cliqz-blue: #00AEF0;
 $speed-dial-count: 5;
 $speed-dial-width: 166px;
 $content-width: calc(#{$speed-dial-count} * #{$speed-dial-width});
@@ -6,12 +7,18 @@ $content-width: calc(#{$speed-dial-count} * #{$speed-dial-width});
 @import 'speed-dial-row';
 @import 'speed-dial';
 @import 'url-bar';
+@import 'cliqz-news';
 
-html, body, #app {
+html {
+  background-color: #f7f7f7;
+}
+
+html, body, #app, #home {
   padding: 0;
   margin: 0;
   height: 100%;
   font-family: Sans;
+  overflow: hidden;
 }
 
 #app {
@@ -35,9 +42,6 @@ html, body, #app {
 
     #top, #bottom {
       flex: 1 1;
-    }
-
-    #top {
       display: flex;
       flex-direction: column;
       justify-content: center;

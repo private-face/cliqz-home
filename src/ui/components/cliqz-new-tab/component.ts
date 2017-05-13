@@ -20,7 +20,7 @@ export default class CliqzNewTab extends Component {
 
     });
     this.cliqz.freshtab.getNews().then(news => {
-      this.news = news.news;
+      this.news = news.news.slice(0,3);
     });
   }
 }
