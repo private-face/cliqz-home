@@ -13,7 +13,11 @@ export default class CliqzNewTab extends Component {
       this.locale = config.locale;
     });
     this.cliqz.freshtab.getSpeedDials().then(dials => {
-      this.dials = dials;
+      this.dials = {
+        history: dials.history.slice(0, 5),
+        custom: dials.custom,
+      };
+
     });
     this.cliqz.freshtab.getNews().then(news => {
       this.news = news.news;

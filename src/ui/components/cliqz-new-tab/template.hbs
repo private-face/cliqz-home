@@ -4,15 +4,8 @@
   </nav>
   <section id="content">
     <section id="top">
-      <ul>
-        {{#each dials.history key="@index" as |dial|}}
-          <li>{{dial.url}}</li>
-        {{/each}}
-        <hr/>
-        {{#each dials.custom key="@index" as |dial|}}
-          <li>{{dial.url}}</li>
-        {{/each}}
-      </ul>
+      <speed-dial-row @model={{dials.history}}></speed-dial-row>
+      <speed-dial-row @model={{dials.custom}}></speed-dial-row>
     </section>
     <section id="middle">
       bbb

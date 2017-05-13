@@ -1,0 +1,8 @@
+.speed-dial-row {
+  margin: 0 auto;
+  width: calc(166px * 5);
+  display: grid;
+  grid-template-columns: 166px 166px 166px 166px 166px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
