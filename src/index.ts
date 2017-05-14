@@ -14,6 +14,6 @@ app.registerInitializer({
   }
 });
 
-app.renderComponent('cliqz-new-tab', containerElement, null);
+app.renderComponent('cliqz-home', containerElement, null);
 
 app.boot();
