@@ -6,21 +6,23 @@ export default class CliqzNewTab extends Component {
 
   @tracked locale: String;
   @tracked dials;
-  @tracked news;
+  @tracked news: Array = [{ displayUrl: 111, logo: {}}];
 
   didInsertElement() {
     this.cliqz.freshtab.getConfig().then(config => {
       this.locale = config.locale;
     });
+
     this.cliqz.freshtab.getSpeedDials().then(dials => {
       this.dials = {
         history: dials.history.slice(0, 5),
         custom: dials.custom,
       };
+    });
 
-    });
     this.cliqz.freshtab.getNews().then(news => {
-      this.news = news.news.slice(0,3);
+      this.news = news.news;
     });
+
   }
 }

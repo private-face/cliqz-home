@@ -1,5 +1,5 @@
 <div class="cliqz-news">
-  {{#each @model key="@index" as |article|}}
+  {{#each articles key="@index" as |article|}}
     <a class="article" href={{article.url}}>
       <div class="side-front">
         <cliqz-logo @logo={{article.logo}}></cliqz-logo>
