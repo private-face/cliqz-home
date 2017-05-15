@@ -1,10 +1,11 @@
 import Component, { tracked } from "@glimmer/component";
 
 export default class extends Component {
-  autopaginationInterval = 3000;
+  autopaginationInterval = 4000;
   articleHeight = 0;
   @tracked currentPage = 0;
   autopagination = true;
+  skipNextPagination = false;
 
   @tracked ('args')
   get articles() {
@@ -58,6 +59,12 @@ export default class extends Component {
       }
 
       if (!this.autopagination) {
+        this.skipNextPagination = true;
+        return;
+      }
+
+      if (this.skipNextPagination) {
+        this.skipNextPagination = false;
         return;
       }
 
