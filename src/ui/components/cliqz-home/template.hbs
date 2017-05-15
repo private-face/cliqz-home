@@ -10,7 +10,9 @@
       <url-bar></url-bar>
     </section>
     <section id="bottom">
-      <cliqz-news @model={{news}}></cliqz-news>
+      {{#if news}}
+        <cliqz-news @model={{news}}></cliqz-news>
+      {{/if}}
     </section>
   </section>
   <nav id="nav-right">

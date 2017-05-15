@@ -1,21 +1,27 @@
-<div class="cliqz-news">
-  {{#each articles key="@index" as |article|}}
-    <a class="article" href={{article.url}}>
-      <div class="side-front">
-        <cliqz-logo @logo={{article.logo}}></cliqz-logo>
-        <span class="source-name">
-          {{article.displayUrl}}
-        </span>
-        <p class="title">
-          {{article.title}}
-        </p>
-      </div>
-      <div class="side-back">
-        <p class="abstract">
-          {{article.description}}
-        </p>
-        <a>Read more</a>
-      </div>
-    </a>
+<div class="cliqz-news" onmouseover={{action onMouseOver}} onmouseout={{action onMouseOut}}>
+  {{#each pages key="@index" as |article index|}}
+    <button onclick={{action setPage index}}
+      class="{{if-equal index currentPage "active"}}"></button>
   {{/each}}
+  <div class="acordion">
+    {{#each articles key="@index" as |article|}}
+      <a class="article" href={{article.url}}>
+        <div class="side-front">
+          <cliqz-logo @logo={{article.logo}}></cliqz-logo>
+          <span class="source-name">
+            {{article.displayUrl}}
+          </span>
+          <p class="title">
+            {{article.title}}
+          </p>
+        </div>
+        <div class="side-back">
+          <p class="abstract">
+            {{article.description}}
+          </p>
+          <a>Read more</a>
+        </div>
+      </a>
+    {{/each}}
+  </div>
 </div>

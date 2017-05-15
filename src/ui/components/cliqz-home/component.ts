@@ -6,7 +6,7 @@ export default class CliqzNewTab extends Component {
 
   @tracked locale: String;
   @tracked dials;
-  @tracked news: Array = [{ displayUrl: 111, logo: {}}];
+  @tracked news: Array;
 
   didInsertElement() {
     this.cliqz.freshtab.getConfig().then(config => {

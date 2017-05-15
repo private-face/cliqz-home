@@ -1,18 +1,38 @@
 $cliqz-news-column-gap: 20px;
-//$cliqz-news-column-width: calc((#{$content-width} / 3) - (2 * #{$cliqz-news-column-gap}));
 $cliqz-news-column-width: calc((#{$content-width} - (2 * #{$cliqz-news-column-gap})) / 3);
 
 $cliqz-news-logo-size: 30px;
 
 .cliqz-news {
   margin-top: 20px;
-  width: $content-width;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: $cliqz-news-column-width $cliqz-news-column-width $cliqz-news-column-width;
-  grid-column-gap: $cliqz-news-column-gap;
 
-  & > a {
+  button {
+    border: 1px solid $color-cliqz-gray;
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    border-radius: 100%;
+    background-color: white;
+    cursor: pointer;
+    margin-bottom: 10px;
+    outline: none;
+    padding: 0px;
+
+    &.active {
+      background-color: $color-cliqz-gray;
+    }
+  }
+
+  .acordion {
+    width: 100%;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: $cliqz-news-column-width $cliqz-news-column-width $cliqz-news-column-width;
+    grid-column-gap: $cliqz-news-column-gap;
+  }
+
+  .article {
     background-color: white;
     border: 1px solid #DBDBDB;
     padding: 5px;
@@ -42,7 +62,7 @@ $cliqz-news-logo-size: 30px;
     }
 
     .title {
-      padding-top: 20px;
+      padding: 20px 5px 0px;
     }
 
     .side-front {
@@ -54,8 +74,9 @@ $cliqz-news-logo-size: 30px;
     }
 
     .side-back {
+      font-size: 14px;
       visibility: hidden;
-      padding-bottom: 2em;
+      padding-bottom: 1em;
 
       a {
         position: absolute;
@@ -64,6 +85,7 @@ $cliqz-news-logo-size: 30px;
         height: 1em;
         line-height: 1em;
         color: $color-cliqz-blue;
+        padding: 5px;
 
         &:hover {
           text-decoration: underline;
