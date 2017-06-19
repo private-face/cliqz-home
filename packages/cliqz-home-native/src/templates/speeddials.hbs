@@ -1,0 +1,13 @@
+<h3 class="speedDialLabel">{{i18n.speedDials.history-sites}}</h3>
+<div class="speed-dial-row" id="most-visited">
+  {{#each history}}
+    {{> speeddial role="history"}}
+  {{/each}}
+</div>
+<h3 class="speedDialLabel">{{i18n.speedDials.custom-sites}}</h3>
+<div class="speed-dial-row" id="favorites">
+  {{#each custom}}
+    {{> speeddial role="custom"}}
+  {{/each}}
+</div>
+<div class="undo" id="undo" style="display: none"><a href="">{{i18n.speedDials.custom-sites}}</a> <a href="">Close</a></div>

@@ -1,0 +1,11 @@
+<div class="cliqz-news">
+  {{#each pages}}
+    <a class="{{#if active}}active{{/if}} button" data-index="{{@index}}"></a>
+  {{/each}}
+
+  <div class="acordion" style="height: 141px;" id="news">
+    {{#each news}}
+      {{> article}}
+    {{/each}}
+  </div>
+</div>
