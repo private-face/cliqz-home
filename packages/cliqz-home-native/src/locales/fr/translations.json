@@ -1,12 +1,12 @@
 {
-  general: {
+  "general": {
     "switch-on": "ON",
     "switch-off": "OFF",
     "en-language": "Anglais",
     "de-language": "Allemand",
     "fr-language": "Français"
   },
-  onboarding: {
+  "onboarding": {
     "title": "Wouhou ! Cliqz a été installé.",
     "hdr-privacy": "Vous êtes en sûreté avec Cliqz.",
     "txt-privacy1": "Notre innovation",
@@ -25,11 +25,11 @@
     "cta3": "Okay, Allons-y !",
     "learn-more": "En savoir plus sur Cliqz"
   },
-  miniOnboarding: {
+  "miniOnboarding": {
     "learn-more": "En savoir plus",
     "back_to_old": "Retourner à l'ancienne page principale"
   },
-  speedDials: {
+  "speedDials": {
     "btn-add": "Ajouter",
     "address": "Entrer une adresse",
     "exists-already": "Existe déjà",
@@ -46,17 +46,17 @@
     "notifications-disable": "Désactiver les notifications",
     "notifications-enable": "Activer les notifications"
   },
-  urlBar: {
+  "urlBar": {
     "search-address": "Rechercher ou saisir une adresse"
   },
-  news: {
+  "news": {
     "read-more": "Lire plus",
     "breaking-news": "Breaking news :"
   },
-  abtests: {
+  "abtests": {
     "feedback": "Questions ? Commentaires ? Contacter Cliqz"
   },
-  notifications: {
+  "notifications": {
     "hdr-new-brand": "Cliqz sera bientôt relooké!",
     "txt-new-brand1": "Nous allons mettre à jour les icônes du navigateur Cliqz ainsi que son aspect général.",
     "cta-new-brand": "En savoir plus",
@@ -82,8 +82,8 @@
     "txt-win-no-support-message": "Cliqz will end support for Windows XP and Windows Vista with the next update at the end of April. Find out how you can continue using Cliqz",
     "cta-win-no-support-message": "here"
   },
-  title: 'Nouvel onglet',
-  settings: {
+  "title": "Nouvel onglet",
+  "settings": {
     "hdr-customize": "Personnaliser Cliqz Tab",
     "hdr-top-sites": "Top Sites",
     "txt-show-mail-notifications": "Montrer les alertes d’emails",
@@ -93,7 +93,7 @@
     "tooltip-top-news": "Les Top News que nous vous proposons par défaut sont uniquement basés sur la langue de votre navigateur. Vous pouvez changer d'édition ici.",
     "send-us-feedback": "Nous envoyer un Feedback ou commentaire"
   },
-  history: {
+  "history": {
     "tab-title": "History",
     "btn-clear-all-label": "Clear Recent History...",
     "search-placeholder": "Search History",

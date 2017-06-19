@@ -1,12 +1,12 @@
 {
-  general: {
+  "general": {
     "switch-on": "AN",
     "switch-off": "AUS",
     "en-language": "Englisch",
     "de-language": "Deutsch",
     "fr-language": "Französisch"
   },
-  onboarding: {
+  "onboarding": {
     "title": "Juhuuu! Cliqz wurde erfolgreich installiert.",
     "hdr-privacy": "Mit Cliqz bist du sicher.",
     "txt-privacy1": "Unsere innovativen",
@@ -25,11 +25,11 @@
     "cta3": "Und los geht‘s!",
     "learn-more": "Mehr über Cliqz erfahren"
   },
-  miniOnboarding: {
+  "miniOnboarding": {
     "learn-more": "Mehr erfahren",
     "back_to_old": "Zurück zu alter Startseite"
   },
-  speedDials: {
+  "speedDials": {
     "btn-add": "Hinzufügen",
     "address": "Adresse eingeben",
     "exists-already": "Bereits vorhanden",
@@ -46,17 +46,17 @@
     "notifications-disable": "Benachrichtigungen deaktivieren",
     "notifications-enable": "Benachrichtigungen aktivieren",
   },
-  urlBar: {
+  "urlBar": {
     "search-address": "Suche oder Adresse eingeben"
   },
-  news: {
+  "news": {
     "read-more": "Weiterlesen",
     "breaking-news": "Eilmeldung:"
   },
-  abtests: {
+  "abtests": {
     "feedback": "Fragen? Anmerkungen? Cliqz kontaktieren"
   },
-  notifications: {
+  "notifications": {
     "hdr-new-brand": "Cliqz bekommt einen neuen Look!",
     "txt-new-brand1": "In Kürze werden wir das Cliqz Browser Logo aktualisieren.",
     "cta-new-brand": "Erfahre mehr",
@@ -82,8 +82,8 @@
     "txt-win-no-support-message": "Wie du Cliqz weiter nutzen kannst, erfährst du",
     "cta-win-no-support-message": "hier"
   },
-  title: 'Neuer Tab',
-  settings: {
+  "title": "Neuer Tab",
+  "settings": {
     "hdr-customize": "Cliqz Tab anpassen",
     "hdr-top-sites": "Top Sites",
     "txt-show-mail-notifications": "E-Mail Benachrichtigungen zeigen",
@@ -93,7 +93,7 @@
     "tooltip-top-news": "Die Auswahl der Top Nachrichten basiert ausschließlich auf der Sprache deines Cliqz Browsers. Du kannst hier eine andere Sprachausgabe wählen.",
     "send-us-feedback": "Feedback schicken"
   },
-  history: {
+  "history": {
     "tab-title": "Chronik",
     "btn-clear-all-label": "Gesamte Chronik löschen...",
     "search-placeholder": "Chronik durchsuchen",
