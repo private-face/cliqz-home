@@ -1,0 +1,15 @@
+html {
+  background-color: #f7f7f7;
+}
+
+html, body, #app, #home {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  font-family: Sans;
+  overflow: hidden;
+}
+
+#app {
+  display: flex;
+}

@@ -1,0 +1,30 @@
+<a class="speed-dial" href="{{model.url}}">
+  <Logo model="{{model.logo}}"/>
+  <span class="title">{{ model.displayTitle }}</span>
+</a>
+
+<script>
+  import Logo from './logo.html';
+
+  export default {
+    components: {
+      Logo,
+    },
+  };
+</script>
+
+<style>
+  .speed-dial {
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .logo {
+    margin: 0 auto;
+  }
+
+  .title {
+    color: #1A1A25;
+    display: block;
+  }
+</style>

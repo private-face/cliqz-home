@@ -1,0 +1,30 @@
+<div class="speed-dials-row">
+  {{#each model as speedDial}}
+    <SpeedDial model="{{speedDial}}"/>
+  {{/each}}
+</div>
+
+<script>
+  import SpeedDial from './speed-dial.html';
+
+  export default {
+    data() {
+      return {
+        model: [],
+      };
+    },
+    components: {
+      SpeedDial,
+    },
+  };
+</script>
+
+<style>
+  .speed-dials-row {
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 166px 166px 166px 166px 166px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+</style>

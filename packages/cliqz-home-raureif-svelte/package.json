@@ -12,6 +12,9 @@
   },
   "keywords": [],
   "author": "",
+  "dependencies": {
+    "spanan": "^1.2.0"
+  },
   "devDependencies": {
     "raureif": "1.6.0",
     "raureif-svelte": "^0.1.0"
