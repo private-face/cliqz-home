@@ -1,0 +1,45 @@
+<input ref:input class="url-bar" on:keydown="queryCliqz(event)" placeholder="Search or enter address"/>
+
+<script>
+  import cliqz from '../cliqz-service';
+
+  const SPECIAL_KEYS = [8, 9, 13, 16, 17, 18, 19, 20, 27, 33, 34, 35, 36, 37, 38, 39, 40, 91, 224];
+
+  export default {
+    oncreate() {
+      this.refs.input.focus();
+    },
+    methods: {
+      queryCliqz(ev) {
+        let input = SPECIAL_KEYS.indexOf(ev.which) > -1 ? '' : ev.key;
+
+        if (ev.keyCode === 13) {
+          input = this.refs.input.value;
+        }
+
+        cliqz.core.queryCliqz(input);
+
+        cliqz.core.sendTelemetry({
+          type: 'home',
+          action: 'search_keystroke'
+        });
+
+        setTimeout(() => {
+          this.refs.input.value = '';
+        }, 0);
+      },
+    },
+  };
+</script>
+
+<style>
+  .url-bar {
+    box-sizing: border-box;
+    display: block;
+    width: calc(5 * 166px);
+    margin: 0 auto;
+    border: 1px solid #DBDBDB;
+    font-size: 16px;
+    height: 35px;
+  }
+</style>

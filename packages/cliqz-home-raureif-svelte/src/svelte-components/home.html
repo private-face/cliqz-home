@@ -7,6 +7,7 @@
     </section>
 
     <section id="middle">
+      <UrlBar />
       <!--
       <url-bar :core="core"></url-bar>
       -->
@@ -23,10 +24,12 @@
 
 <script>
   import SpeedDialsRow from './speed-dials-row.html';
+  import UrlBar from './url-bar.html';
 
   export default {
     components: {
-      SpeedDialsRow
+      SpeedDialsRow,
+      UrlBar,
     },
   };
 </script>
