@@ -1,0 +1,133 @@
+<div class="cliqz-news" on:mouseover="onMouseOver(event)" on:mouseout="onMouseOut(event)">
+  {{#each pages as article, index}}
+    {{#if currentPage === index}}
+      <a on:click="setPage(index)" class="active button"></a>
+    {{else}}
+      <a on:click="setPage(index)" class="button"></a>
+    {{/if}}
+  {{/each}}
+  <div ref:acordion class="acordion">
+    {{#each articles as article}}
+      <Article article="{{article}}" on:rendered="registerArticle(article)" />
+    {{/each}}
+  </div>
+</div>
+
+<script>
+  import Article from './article.html';
+
+  export default {
+    oncreate() {
+      this.articleHeight = 0;
+      this.autopagination = true;
+      this.articleCount = 0;
+      this.startAutopagination();
+    },
+    data() {
+      return {
+        currentPage: 0,
+        model: {},
+      };
+    },
+    computed: {
+      articles: model => model.news || [],
+      pageCount: articles => Math.ceil(articles.length / 3),
+      pages: pageCount => Array(pageCount || 0).fill(null),
+    },
+    methods: {
+      registerArticle(article) {
+        this.articleCount += 1;
+
+        if (this.articleCount === this.get().articles.length) {
+          const acordion = this.refs.acordion;
+          const articles = Array.from(acordion.querySelectorAll('.article'));
+
+          const heights = articles.map(el => ({
+            offsetHeight: el.offsetHeight,
+            clientHeight: el.clientHeight,
+          }));
+          const maxOffsetHeight = Math.max(...heights.map(el => el.offsetHeight));
+          const maxClientHeight = Math.max(...heights.map(el => el.clientHeight));
+
+          // + 10 is padding
+          this.articleHeight = maxOffsetHeight + 10;
+          articles.forEach(el => el.style.height = maxClientHeight + "px");
+          acordion.style.height = this.articleHeight + "px";
+        }
+      },
+      onMouseOver() {
+        this.autopagination = false;
+      },
+      onMouseOut() {
+        this.autopagination = true;
+      },
+      setPage(index) {
+        const acordion = this.refs.acordion;
+        acordion.scrollTop = this.articleHeight * index;
+        this.set({
+          currentPage: index,
+        });
+      },
+      startAutopagination() {
+        this.interval = setInterval(() => {
+          if (!this.refs.acordion) {
+            clearInterval(this.interval);
+            delete this.interval;
+            return;
+          }
+
+          if (!this.autopagination) {
+            this.skipNextPagination = true;
+            return;
+          }
+
+          if (this.skipNextPagination) {
+            this.skipNextPagination = false;
+            return;
+          }
+
+          let nextPage = this.get().currentPage + 1;
+          if (nextPage === this.get().pageCount) {
+            nextPage = 0;
+          }
+
+          this.setPage(nextPage);
+        }, 4000);
+      },
+    },
+    components: {
+      Article,
+    },
+  };
+</script>
+
+<style>
+  .cliqz-news {
+    margin-top: 20px;
+    margin: 0 auto;
+  }
+
+  .acordion {
+    width: 100%;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: calc(((166px * 5) - (2 * 20px)) / 3) calc(((166px * 5) - (2 * 20px)) / 3) calc(((166px * 5) - (2 * 20px)) / 3);
+    grid-column-gap: 20px;
+  }
+
+  .button {
+    border: 1px solid #BFCBD6;
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    border-radius: 100%;
+    background-color: white;
+    cursor: pointer;
+    margin-bottom: 10px;
+    padding: 0px;
+  }
+
+  .button.active {
+    background-color: #BFCBD6;
+  }
+</style>

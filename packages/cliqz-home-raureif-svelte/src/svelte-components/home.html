@@ -8,15 +8,10 @@
 
     <section id="middle">
       <UrlBar />
-      <!--
-      <url-bar :core="core"></url-bar>
-      -->
     </section>
 
     <section id="bottom">
-      <!--
-      <news :news="news"></news>
-      -->
+      <News model="{{news}}"/>
     </section>
   </section>
   <nav id="nav-right"></nav>
@@ -25,11 +20,13 @@
 <script>
   import SpeedDialsRow from './speed-dials-row.html';
   import UrlBar from './url-bar.html';
+  import News from './news.html';
 
   export default {
     components: {
       SpeedDialsRow,
       UrlBar,
+      News,
     },
   };
 </script>

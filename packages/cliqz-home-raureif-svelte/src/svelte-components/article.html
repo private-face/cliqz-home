@@ -1,0 +1,109 @@
+<a class="article" href="{{article.url}}">
+  <div class="side-front">
+    <Logo model="{{article.logo}}"/>
+    <span class="source-name">
+      {{article.displayUrl}}
+    </span>
+    <p class="title">
+      {{article.title}}
+    </p>
+  </div>
+  <div class="side-back">
+    <p class="abstract">
+      {{article.description}}
+    </p>
+    <a>Read more</a>
+  </div>
+</a>
+
+<script>
+  import Logo from './logo.html';
+
+  export default {
+    oncreate() {
+      this.fire('rendered');
+    },
+    components: {
+      Logo,
+    },
+  };
+</script>
+
+<style>
+  .article {
+    background-color: white;
+    border: 1px solid #DBDBDB;
+    padding: 5px;
+
+    color: black;
+    text-decoration: none;
+    position: relative;
+  }
+  .article p {
+    margin: 0px;
+    clear: both;
+  }
+
+  .article .source-name, .article .logo {
+    float: left;
+    display: inline-block;
+    height: 30px;
+    margin-left: 10px;
+  }
+
+  .article .logo {
+    width: 30px;
+  }
+
+  .article .source-name {
+    line-height: 30px;
+  }
+
+  .article .title {
+    padding: 20px 5px 0px;
+  }
+
+  .side-front {
+    position: absolute;
+    top: 0;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    transition:opacity 0.2s linear;
+    transition-delay: 0.2s;
+    opacity: 1;
+  }
+
+  .side-back {
+    font-size: 14px;
+    padding-bottom: 1em;
+    transition:opacity 0.2s linear;
+    transition-delay: 0s;
+    opacity: 0;
+  }
+
+  .side-back  a {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 1em;
+    line-height: 1em;
+    color: #00AEF0;
+    padding: 5px;
+  }
+
+  .side-back a:hover {
+    text-decoration: underline;
+  }
+
+  .article:hover .side-front {
+    opacity: 0;
+    transition-delay: 0s;
+  }
+
+  .article:hover .side-back {
+    transition-delay: 0.2s;
+    opacity: 1;
+  }
+
+</style>

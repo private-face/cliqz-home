@@ -10,7 +10,7 @@ const home = new Home({
       history: [],
       custom: [],
     },
-    news: [],
+    news: {},
   },
 });
 
