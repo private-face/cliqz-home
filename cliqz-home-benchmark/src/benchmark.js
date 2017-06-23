@@ -196,11 +196,10 @@ class Benchmark {
 		this._data = b;
 	}
 
-	saveAndReload(limit) {
-		limit = typeof limit !== 'number' ? 40 : limit;
+	saveAndReload() {
 		this.save();
 		let hash = +location.hash.slice(1);
-		if (isNaN(hash) || hash === 0 || ++hash > limit) {
+		if (isNaN(hash) || --hash <= 0) {
 			return;
 		}
 		setTimeout(() => {
