@@ -41,6 +41,8 @@ export default {
     this.skipNextPagination = false
   },
   updated () {
+    window.benchmark.markOnce('news')
+    window.newsResolve(performance.now())
     const acordion = this.$el.querySelector('.acordion')
     const articles = Array.from(this.$el.querySelectorAll('.article'))
     const heights = articles.map(function (el) {

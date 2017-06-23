@@ -3,12 +3,12 @@
     <nav id="nav-left"></nav>
     <section class="content">
       <section id="top">
-        <speed-dials :dials="dials.history"></speed-dials>
-        <speed-dials :dials="dials.custom"></speed-dials>
+        <speed-dials :dials="dials.history" type="history"></speed-dials>
+        <speed-dials :dials="dials.custom" type="custom"></speed-dials>
       </section>
 
       <section id="middle">
-        <url-bar :core="core"></url-bar>
+        <url-bar :core="core" :locale="locale"></url-bar>
       </section>
 
       <section id="bottom">
