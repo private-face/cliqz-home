@@ -1,7 +1,7 @@
 const templates = require('../templates/compiled');
 const cliqz = require('./cliqz-service');
 const config = require('./config');
-const Benchmark = require('./benchmark');
+const Benchmark = require('cliqz-home-benchmark');
 
 const $ = (selector, context = document) => context.querySelector(selector);
 const $$ = (selector, context = document) => Array.from(context.querySelectorAll(selector));
