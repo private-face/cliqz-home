@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "raureif": "1.6.0",
-    "raureif-svelte": "^0.1.0"
+    "raureif-svelte": "^0.1.0",
+    "cliqz-home-benchmark": "file:../../cliqz-home-benchmark"
   }
 }

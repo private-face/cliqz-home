@@ -1,6 +1,6 @@
 <div class="speed-dials-row">
   {{#each model as speedDial}}
-    <SpeedDial model="{{speedDial}}"/>
+    <SpeedDial model="{{speedDial}}" on:rendered="registerSpeedDial()" />
   {{/each}}
 </div>
 
@@ -8,6 +8,9 @@
   import SpeedDial from './speed-dial.html';
 
   export default {
+    oncreate() {
+      this.speedDialsCount = 0;
+    },
     data() {
       return {
         model: [],
@@ -16,6 +19,18 @@
     components: {
       SpeedDial,
     },
+    methods: {
+      registerSpeedDial() {
+        if (this.get('type') !== 'custom') {
+          return;
+        }
+        this.speedDialsCount++;
+        if (this.get('model').length === this.speedDialsCount) {
+          window.benchmark.markOnce('speed dials');
+          window.speeddialsResolve(performance.now());
+        }
+      }
+    }
   };
 </script>
 

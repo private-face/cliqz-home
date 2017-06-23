@@ -41,6 +41,8 @@
         if (this.articleCount === this.get().articles.length) {
           const acordion = this.refs.acordion;
           const articles = Array.from(acordion.querySelectorAll('.article'));
+          window.benchmark.markOnce('news');
+          window.newsResolve(performance.now());
 
           const heights = articles.map(el => ({
             offsetHeight: el.offsetHeight,

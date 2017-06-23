@@ -7,6 +7,9 @@
   import Logo from './logo.html';
 
   export default {
+    oncreate() {
+      this.fire('rendered');
+    },
     components: {
       Logo,
     },

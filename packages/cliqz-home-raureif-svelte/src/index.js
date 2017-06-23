@@ -1,6 +1,16 @@
 /* global document */
 import cliqz from './cliqz-service';
 import Home from './svelte-components/home.html';
+import Benchmark from 'cliqz-home-benchmark';
+
+window.benchmark = new Benchmark('svelte');
+Promise.all([
+    new Promise((resolve) => { window.urlbarResolve = resolve }),
+    new Promise((resolve) => { window.speeddialsResolve = resolve }),
+    new Promise((resolve) => { window.newsResolve = resolve }),
+]).then((...args) => {
+    window.benchmark.saveAndReload();
+});
 
 const home = new Home({
   target: document.querySelector('#app'),

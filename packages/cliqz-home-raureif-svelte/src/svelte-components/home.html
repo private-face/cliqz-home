@@ -2,12 +2,12 @@
   <nav id="nav-left"></nav>
   <section class="content">
     <section id="top">
-      <SpeedDialsRow model="{{speedDials.history}}"/>
-      <SpeedDialsRow model="{{speedDials.custom}}"/>
+      <SpeedDialsRow model="{{speedDials.history}}" type="history" />
+      <SpeedDialsRow model="{{speedDials.custom}}" type="custom" />
     </section>
 
     <section id="middle">
-      <UrlBar />
+      <UrlBar model="{{locale}}" />
     </section>
 
     <section id="bottom">
