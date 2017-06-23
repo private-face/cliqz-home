@@ -33,7 +33,8 @@
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.9.0",
-    "spanan": "^1.2.0"
+    "spanan": "^1.2.0",
+    "benchmark": "file:../../cliqz-home-benchmark"
   },
   "dependencies": {
   }

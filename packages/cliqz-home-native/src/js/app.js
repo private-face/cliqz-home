@@ -1,8 +1,12 @@
 const templates = require('../templates/compiled');
 const cliqz = require('./cliqz-service');
 const config = require('./config');
+const Benchmark = require('./benchmark');
+
 const $ = (selector, context = document) => context.querySelector(selector);
 const $$ = (selector, context = document) => Array.from(context.querySelectorAll(selector));
+
+window.benchmark = new Benchmark('nativejs');
 
 class DynamicComponent {
     constructor(targetId, template) {
@@ -12,7 +16,7 @@ class DynamicComponent {
     }
 
     start() {
-        this.getData()
+        return this.getData()
             .then(this.render.bind(this));
     }
 
@@ -21,10 +25,13 @@ class DynamicComponent {
     }
 
     render(data) {
-        performance.mark(this._name);
-        console.timeEnd(`get data ${this._name}`);
-        console.log(data);
-        this._targetEl.innerHTML = this._template(data);
+        return new Promise((resolve) => {
+            window.requestAnimationFrame(() => {
+                this._targetEl.innerHTML = this._template(data);
+                benchmark.mark(`${this._name}`);
+                resolve();
+            });
+        });
     }
 }
 
@@ -32,10 +39,10 @@ class DynamicComponent {
 class SpeedDials extends DynamicComponent {
     constructor() {
         super('top', templates.speeddials);
+        this._name = 'speed dials';
     }
 
     getData() {
-        console.time(`get data ${this._name}`);
         return Promise.all([cliqz.freshtab.getSpeedDials(), config])
             .then(([speedDials, config]) => {
                 speedDials.i18n = config.i18n;
@@ -49,6 +56,7 @@ class UrlBar extends DynamicComponent {
         super('middle', templates.urlbar);
         this._SPECIAL_KEYS = [8, 9, 13, 16, 17, 18, 19, 20, 27, 33, 34, 35, 36, 37, 38, 39, 40, 91, 224];
         this._targetEl.addEventListener('keydown', this._queryCliqz.bind(this));
+        this._name = 'url bar';
     }
 
     _element() {
@@ -78,7 +86,6 @@ class UrlBar extends DynamicComponent {
     }
 
     getData() {
-        console.time(`get data ${this._name}`);
         return config;
     }
 }
@@ -86,6 +93,7 @@ class UrlBar extends DynamicComponent {
 class News extends DynamicComponent {
     constructor() {
         super('bottom', templates.news);
+        this._name = 'news';
         this._currentPage = 0;
         this._animationTimeout = null;
         this._switchPageTimeout = null;
@@ -143,7 +151,6 @@ class News extends DynamicComponent {
     }
 
     getData() {
-        console.time(`get data ${this._name}`);
         return cliqz.freshtab.getNews()
             .then((data) => {
                 const pages = Math.ceil(data.news.length / 3);
@@ -163,9 +170,11 @@ class App {
     }
 
     start() {
-        this._speedDials.start();
-        this._news.start();
-        this._urlBar.start();
+        Promise.all([
+            this._speedDials.start(),
+            this._news.start(),
+            this._urlBar.start()            
+        ]).then(benchmark.saveAndReload.bind(benchmark));
     }
 }
 

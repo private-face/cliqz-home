@@ -87,7 +87,7 @@ gulp.task('bundle', ['index'], function() {
 		.pipe(source('bundle.js'))
 		.pipe(buffer())
 		.pipe(sourcemaps.init({ loadMaps: true }))
-			.pipe(minify())
+			// .pipe(minify())
 		.pipe(sourcemaps.write('./'))
 		.pipe(gulp.dest('./dist/js'));
 });
