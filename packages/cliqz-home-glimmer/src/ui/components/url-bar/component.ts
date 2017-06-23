@@ -10,8 +10,7 @@ export default class extends Component {
 
   didInsertElement() {
     this.element.focus();
-    window.benchmark.markOnce('url bar');
-    window.urlbarResolve(performance.now());
+    window.urlbarReady();
   }
 
   queryCliqz(ev) {

@@ -7,8 +7,7 @@
 
   export default {
     oncreate() {
-      window.benchmark.markOnce('url bar');
-      window.urlbarResolve(performance.now());
+      window.urlbarReady();
       this.refs.input.focus();
     },
     methods: {

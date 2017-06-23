@@ -8,11 +8,11 @@ import Benchmark from 'cliqz-home-benchmark'
 /* eslint-disable */
 window.benchmark = new Benchmark('vue')
 Promise.all([
-    new Promise((resolve) => { window.urlbarResolve = resolve }),
-    new Promise((resolve) => { window.speeddialsResolve = resolve }),
-    new Promise((resolve) => { window.newsResolve = resolve }),
+    new Promise((resolve) => { window.urlbarReady = () => { benchmark.markOnce('url bar'); resolve() } }),
+    new Promise((resolve) => { window.speeddialsReady = () => { benchmark.markOnce('speed dials'); resolve() } }),
+    new Promise((resolve) => { window.newsReady = () => { benchmark.markOnce('news'); resolve() } }),
 ]).then((...args) => {
-    window.benchmark.saveAndReload()
+    window.benchmark.saveAndReload();
 })
 
 Vue.config.productionTip = false

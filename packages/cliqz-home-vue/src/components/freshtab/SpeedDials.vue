@@ -17,8 +17,7 @@ export default {
   props: ['dials', 'type'],
   updated () {
     if (this.type === 'custom') {
-      window.benchmark.markOnce('speed dials')
-      window.speeddialsResolve(performance.now())
+      window.speeddialsReady()
     }
   },
   data () {

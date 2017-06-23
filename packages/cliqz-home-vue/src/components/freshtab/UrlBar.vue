@@ -17,8 +17,7 @@ export default {
     this.queryCliqz.bind(this)
   },
   mounted () {
-    window.benchmark.markOnce('url bar')
-    window.urlbarResolve(performance.now())
+    window.urlbarReady()
     this.$el.focus()
   },
   methods: {
