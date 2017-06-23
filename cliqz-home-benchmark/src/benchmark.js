@@ -66,9 +66,10 @@ class Benchmark {
 		performance.mark(name);
 	}
 
-	clear() {
+	clear(name) {
+		name = name || this._benchmarkName;
 		const d = this._data;
-		delete d[this._benchmarkName];
+		delete d[name];
 		this._data = d;
 	}
 
