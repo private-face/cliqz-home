@@ -25,6 +25,8 @@ export default class extends Component {
   }
 
   didInsertElement() {
+    window.benchmark.markOnce('news');
+    window.newsResolve(performance.now());
     const acordion = this.element.querySelector('.acordion');
     const articles = Array.from(this.element.querySelectorAll('.article'));
     const heights = articles.map(el => ({

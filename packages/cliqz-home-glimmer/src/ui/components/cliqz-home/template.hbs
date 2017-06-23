@@ -3,11 +3,17 @@
   </nav>
   <section id="content">
     <section id="top">
-      <speed-dial-row @model={{dials.history}}></speed-dial-row>
-      <speed-dial-row @model={{dials.custom}}></speed-dial-row>
+      {{#if dials.history}}
+        <speed-dial-row @model={{dials.history}} @type="history"></speed-dial-row>
+      {{/if}}
+      {{#if dials.custom}}
+        <speed-dial-row @model={{dials.custom}} @type="custom"></speed-dial-row>
+      {{/if}}
     </section>
     <section id="middle">
-      <url-bar></url-bar>
+      {{#if locale}}
+        <url-bar @locale={{locale}}></url-bar>
+      {{/if}}
     </section>
     <section id="bottom">
       {{#if news}}

@@ -1,4 +1,4 @@
-import Component from "@glimmer/component";
+import Component, { tracked } from "@glimmer/component";
 import CliqzService from "../cliqz-service";
 
 const SPECIAL_KEYS = [8, 9, 13, 16, 17, 18, 19, 20, 27,
@@ -10,6 +10,8 @@ export default class extends Component {
 
   didInsertElement() {
     this.element.focus();
+    window.benchmark.markOnce('url bar');
+    window.urlbarResolve(performance.now());
   }
 
   queryCliqz(ev) {

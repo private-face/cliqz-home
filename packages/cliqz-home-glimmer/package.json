@@ -24,7 +24,8 @@
     "rollup-plugin-commonjs": "^8.0.2",
     "rollup-plugin-node-resolve": "^3.0.0",
     "spanan": "1.2.0",
-    "typescript": "^2.2.2"
+    "typescript": "^2.2.2",
+    "benchmark": "file:../../cliqz-home-benchmark"
   },
   "engines": {
     "node": ">= 4.0"
