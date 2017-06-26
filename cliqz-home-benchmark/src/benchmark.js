@@ -98,15 +98,20 @@ class Benchmark {
 		});
 	}
 
-	fullReport(fn = avg) {
+	fullReport(name) {
+		name = name || this._benchmarkName;
 		['min', 'avg', 'max'].forEach((fnName) => {
 			this.report(this[fnName]);
 		});
 	}
 
 	report(fn = avg) {
-		const l = this._data[this._benchmarkName].length;
-		console.log(`Stats for ${this._benchmarkName}, ${l} samples, function ${fn.name}`);
+		this._reportByName(this._benchmarkName, fn);
+	}
+
+	reportByName(name, fn = avg) {
+		const l = this._data[name].length;
+		console.log(`Stats for ${name}, ${l} samples, function ${fn.name}`);
 		console.table(this._buildStats(fn), ["name", "startTime", "duration"]);
 		this.chart(fn);
 	}
