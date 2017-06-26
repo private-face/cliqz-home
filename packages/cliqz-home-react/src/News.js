@@ -8,6 +8,10 @@ class News extends Component {
 		this.buttonClick = this.buttonClick.bind(this);
 	}
 
+	componentDidUpdate() {
+		window.newsReady();
+	}
+
 	_updatePage() {
 		const app = document.querySelector('#app');
 

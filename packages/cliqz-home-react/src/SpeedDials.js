@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import Logo from './Logo';
 
 class SpeedDials extends Component {
+	componentDidUpdate() {
+		window.speeddialsReady();
+	}
+	
 	render() {
 		return (
 			<div>

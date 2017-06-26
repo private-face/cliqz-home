@@ -7,22 +7,37 @@ class UrlBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: ''
+      value: '',
+      locale: ''
     };
 
     this.handleKeyDown = this.handleKeyDown.bind(this);
   }
 
   componentDidMount() {
+    this.getConfig();
     this.textInput.focus();
+  }
+
+  componentDidUpdate() {
+    window.urlbarReady();
+  }
+
+  getConfig() {
+    this.props.freshtab.getConfig()
+      .then((config) => {
+        this.setState(Object.assign({}, this.state, {
+          locale: config.locale
+        }));
+      });
   }
 
   handleKeyDown(ev) {
     const value = ev.target.value;
     let input = SPECIAL_KEYS.indexOf(ev.which) > -1 ? '' : ev.key;
-    this.setState({
+    this.setState(Object.assign({}, this.state, {
       value: value
-    });
+    }));
     if(ev.keyCode === 13) {
       input = value;
     }
@@ -46,7 +61,8 @@ class UrlBar extends Component {
                type="text"
                ref={(input) => { this.textInput = input; }}
                placeholder="search"
-               onKeyDown={this.handleKeyDown} />
+               onKeyDown={this.handleKeyDown}
+               role={this.state.locale} />
 			</div>
 		);
 	}

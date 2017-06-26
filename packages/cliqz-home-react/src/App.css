@@ -3,6 +3,7 @@
   display: grid;
   grid-template-columns: 166px 166px 166px 166px 166px;
   margin-bottom: 20px; 
+  width: 830px;
 }
 
 .speedDialLabel {

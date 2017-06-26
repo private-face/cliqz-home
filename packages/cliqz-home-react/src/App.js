@@ -4,6 +4,16 @@ import UrlBar from './UrlBar';
 import SpeedDials from './SpeedDials';
 import News from './News';
 import './App.css';
+import Benchmark from 'cliqz-home-benchmark';
+
+window.benchmark = new Benchmark('react');
+Promise.all([
+    new Promise((resolve) => { window.urlbarReady = () => { window.benchmark.markOnce('url bar'); resolve(); } }),
+    new Promise((resolve) => { window.speeddialsReady = () => { window.benchmark.markOnce('speed dials'); resolve(); } }),
+    new Promise((resolve) => { window.newsReady = () => { window.benchmark.markOnce('news'); resolve(); } }),
+]).then((...args) => {
+    window.benchmark.saveAndReload();
+});
 
 class App extends Component {
   constructor(props) {
@@ -59,14 +69,13 @@ class App extends Component {
     return (
       <div id="app">
         <div id="home">
-          <nav id="nav-left"></nav>
           <section id="content">
             <section id="top">
               <SpeedDials dials={this.state.dials} />
             </section>
 
             <section id="middle">
-              <UrlBar />
+              <UrlBar freshtab={this.freshtab} />
             </section>
 
             <section id="bottom">
