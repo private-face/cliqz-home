@@ -1,20 +1,58 @@
 import React, { Component } from 'react';
-import './App.css';
+import cliqz from './Cliqz';
 import UrlBar from './UrlBar';
 import SpeedDials from './SpeedDials';
 import News from './News';
-import Spanan from 'spanan';
+import './App.css';
 
-let freshtabSpanan;
-let coreSpanan;
 class App extends Component {
   constructor(props) {
     super(props); 
-    window.addEventListener('message', this.handleMessage);
-    freshtabSpanan = this.createSpananForModule('freshtab');
-    coreSpanan = this.createSpananForModule('core');
-    this.freshtab = freshtabSpanan.createProxy();
-    this.core = coreSpanan.createProxy();
+    this.freshtab = cliqz.freshtab;
+    this.state = {
+      config: {},
+      dials: {
+        history: [],
+        custom: []
+      },
+      news: {
+        version: '',
+        data: []
+      }    
+    };
+  }
+
+  componentDidMount() {
+    this.getConfig();
+    this.getSpeedDials();
+    this.getNews();
+  }
+
+  getConfig() {
+    this.freshtab.getConfig().then(config => {
+      this.setState({
+        config: config
+      });
+    });
+  }
+
+  getSpeedDials() {
+    this.freshtab.getSpeedDials().then(dials => {
+      this.setState({
+        dials: dials
+      });
+    });
+  }
+
+  getNews() {
+    this.freshtab.getNews().then((data) => {
+      this.setState({
+        news: {
+          version: data.version,
+          data: data.news,
+        }
+      });
+    });
   }
 
   render() {
@@ -24,7 +62,7 @@ class App extends Component {
           <nav id="nav-left"></nav>
           <section id="content">
             <section id="top">
-              <SpeedDials freshtab={this.freshtab} />
+              <SpeedDials dials={this.state.dials} />
             </section>
 
             <section id="middle">
@@ -32,44 +70,13 @@ class App extends Component {
             </section>
 
             <section id="bottom">
-              <News freshtab={this.freshtab} />
+              <News news={this.state.news} />
             </section>
           </section>
         </div>
       </div>
     );
   }
-
-  createSpananForModule (moduleName) {
-    return new Spanan(({ uuid, functionName, args }) => {
-      const message = JSON.stringify({
-        target: 'cliqz',
-        module: moduleName,
-        action: functionName,
-        requestId: uuid,
-        args
-      })
-      window.postMessage(message, '*')
-    });
-  }
-
-  handleMessage(event) {
-
-    const message = JSON.parse(event.data)
-    if (message.type !== 'response') {
-      return;
-    }
-    freshtabSpanan.dispatch({
-      uuid: message.requestId,
-      returnedValue: message.response
-    })
-
-    coreSpanan.dispatch({
-      uuid: message.requestId,
-      returnedValue: message.response,
-    });
-  }
-
 }
 
 export default App;

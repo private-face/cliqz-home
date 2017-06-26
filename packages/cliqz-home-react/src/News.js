@@ -5,32 +5,7 @@ const $$ = (selector, context = document) => Array.from(context.querySelectorAll
 class News extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			version: '',
-			news: []
-		}
 		this.buttonClick = this.buttonClick.bind(this);
-	}
-
-	componentDidMount() {
-		this.loadNews();
-	}
-
-	loadNews() {
-		this.props.freshtab.getNews().then( (data) => {
-			const pages = Math.ceil(data.news.length / 3);
-			const pagesState = [...Array(pages)].map((_, i) => { 
-        return { active: i === 0 }
-      })
-			this.setState({
-				version: data.version,
-				news: data.news,
-				pages: pagesState,
-				_currentPage: 0,
-				_switchPageTimeout: null,
-				_animationTimeout: null,	
-			})
-		})
 	}
 
 	_updatePage() {
@@ -43,7 +18,9 @@ class News extends Component {
     }
 
     if (this.state._currentPage * 3 >= n) {
-      this.state._currentPage = 0;
+    	this.setState({
+    		_currentPage: 0
+    	});
     }
     articles.forEach((el) => el.classList.add('opaque'));
     clearTimeout(this._animationTimeout);
@@ -106,10 +83,10 @@ class News extends Component {
 
 				<div className="acordion" style={{height: "141px"}} id="news">
 					{
-						this.state.news.map(function(article) {
-							return <a href={article.url} className="article" style={{height: '129px'}}>
+						this.props.news.data.map(function(article, i) {
+							return <a href={article.url} key={i} className="article" style={{height: '129px'}}>
 								<div className="side-front">
-									<Logo logo = {article.logo} />
+									<Logo logo={article.logo} />
 									<span className="source-name">
 										{article.displayUrl}
 									</span>
