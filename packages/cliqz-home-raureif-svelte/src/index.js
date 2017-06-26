@@ -15,7 +15,7 @@ Promise.all([
 const home = new Home({
   target: document.querySelector('#app'),
   data: {
-    locale: 'en',
+    locale: '',
     speedDials: {
       history: [],
       custom: [],

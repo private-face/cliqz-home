@@ -80,7 +80,7 @@ class Benchmark {
 	compare() {
 		const data = this._data;
 		const fns = ['min', 'avg', 'max'];
-		fns.forEach((fnName, i) => {
+		const result = fns.reduce((res, fnName, i) => {
 			const fn = this[fnName];
 			const report = [];
 			for(let impl in data) {
@@ -94,8 +94,10 @@ class Benchmark {
 			}
 			console.log(`${i}. ${fnName.toUpperCase()}`);
 			console.table(report);
-
-		});
+			res[fnName] = report;
+			return res;
+		}, {});
+		return result;
 	}
 
 	fullReport(name) {

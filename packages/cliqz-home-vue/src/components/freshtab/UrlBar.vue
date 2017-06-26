@@ -17,8 +17,10 @@ export default {
     this.queryCliqz.bind(this)
   },
   mounted () {
-    window.urlbarReady()
     this.$el.focus()
+  },
+  updated () {
+    window.urlbarReady()
   },
   methods: {
     queryCliqz (ev) {

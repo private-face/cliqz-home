@@ -26,11 +26,9 @@ class DynamicComponent {
 
     render(data) {
         return new Promise((resolve) => {
-            window.requestAnimationFrame(() => {
-                this._targetEl.innerHTML = this._template(data);
-                benchmark.mark(`${this._name}`);
-                resolve();
-            });
+            this._targetEl.innerHTML = this._template(data);
+            benchmark.mark(`${this._name}`);
+            resolve();
         });
     }
 }
