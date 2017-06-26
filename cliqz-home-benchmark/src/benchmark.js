@@ -106,7 +106,7 @@ class Benchmark {
 	}
 
 	report(fn = avg) {
-		this._reportByName(this._benchmarkName, fn);
+		this.reportByName(this._benchmarkName, fn);
 	}
 
 	reportByName(name, fn = avg) {
