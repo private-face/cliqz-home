@@ -6,7 +6,7 @@ class Chart {
 	_pad(s, c = ' ', n) {
 		n = n || this._markLength;
 		n = Math.round(n);
-		return (s + [...Array(n)].map(() => c).join('')).slice(0, n);
+		return (s + Array.apply(null, Array(n)).map(() => c).join('')).slice(0, n);
 	}
 
 	_drawScale() {

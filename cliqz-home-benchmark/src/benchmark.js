@@ -114,16 +114,17 @@ class Benchmark {
 	reportByName(name, fn = avg) {
 		const l = this._data[name].length;
 		console.log(`Stats for ${name}, ${l} samples, function ${fn.name}`);
-		console.table(this._buildStats(fn), ["name", "startTime", "duration"]);
-		this.chart(fn);
+		console.table(this._buildStats(name, fn), ["name", "startTime", "duration"]);
+		this.chart(name, fn);
 	}
 
-	chart(fn = avg) {
-		this._chart.draw(this._buildStats(fn));
+	chart(name, fn = avg) {
+		name = name || this._benchmarkName;
+		this._chart.draw(this._buildStats(name, fn));
 	}
 
-	_buildStats(fn) {
-		const stats = this._combineStats(this._benchmarkName, fn);
+	_buildStats(name, fn) {
+		const stats = this._combineStats(name, fn);
 		return stats.periods.concat(stats.marks).sort((a, b) => a.startTime - b.startTime);
 	}
 
