@@ -8,6 +8,15 @@ class News extends Component {
 		this.buttonClick = this.buttonClick.bind(this);
 	}
 
+	get pages() {
+		const pageCount = Math.ceil(this.props.news.data.length / 3);
+  	const pages = [...Array(pageCount)].map((_, i) => { 
+  		return { active: i === 0 }
+  	});
+
+  	return pages;
+	}
+
 	_updatePage() {
 		const app = document.querySelector('#app');
 
@@ -77,14 +86,20 @@ class News extends Component {
 		return (
 			<div className="cliqz-news">
 
-				<a href="#" className="active button" onClick={this.buttonClick} data-index="0"></a>
-				<a href="#" className="button" onClick={this.buttonClick} data-index="1"></a>
-				<a href="#" className="button" onClick={this.buttonClick} data-index="2"></a>
+				{
+					this.pages.map((page, i) => {
+						return <a href="#" key={i} className={"button " + (page.active ? 'active' : '')} onClick={this.buttonClick} data-index={i}></a>
+					})
+				}
 
 				<div className="acordion" style={{height: "141px"}} id="news">
 					{
 						this.props.news.data.map(function(article, i) {
-							return <a href={article.url} key={i} className="article" style={{height: '129px'}}>
+							return <a href={article.url} 
+												key={i} 
+												className="article" 
+												style={{height: '129px'}}
+												ref={(elem) => { this.articleElem = elem}}>
 								<div className="side-front">
 									<Logo logo={article.logo} />
 									<span className="source-name">
@@ -101,7 +116,7 @@ class News extends Component {
 									</p>
 								</div>
 							</a>
-						})
+						}.bind(this))
 					}
 				</div>
 			</div>
