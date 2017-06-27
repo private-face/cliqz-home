@@ -41,7 +41,6 @@ class UrlBar extends Component {
     if(ev.keyCode === 13) {
       input = value;
     }
-    console.log(this.textInput)
     cliqz.core.queryCliqz(input);
 
     cliqz.core.sendTelemetry({

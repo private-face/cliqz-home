@@ -3,9 +3,11 @@ import Logo from './Logo';
 
 class SpeedDials extends Component {
 	componentDidUpdate() {
-		window.speeddialsReady();
+		if (this.props.dials.custom.length || this.props.dials.history.length) {
+			window.speeddialsReady();
+		}
 	}
-	
+
 	render() {
 		return (
 			<div>

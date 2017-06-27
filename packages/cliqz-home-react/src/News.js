@@ -9,7 +9,9 @@ class News extends Component {
 	}
 
 	componentDidUpdate() {
-		window.newsReady();
+		if (this.props.news.data.length) {
+			window.newsReady();
+		}
 	}
 
 	_updatePage() {
