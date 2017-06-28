@@ -17,7 +17,7 @@ class App extends Component {
       },
       news: {
         version: '',
-        data: [],
+        data: []
       }    
     };
   }
