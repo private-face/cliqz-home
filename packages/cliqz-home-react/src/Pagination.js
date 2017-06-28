@@ -16,6 +16,7 @@ class Pagination extends Component {
     this.state = {
       pager: {}
     }
+    this.timer = null;
   }
 
   componentWillMount() {
@@ -30,7 +31,27 @@ class Pagination extends Component {
     }
   }
 
+  autoRotate() {
+    clearInterval(this.timer);
+    this.timer = setInterval( () => {
+      const pager = this.state.pager;
+      const currentPage = this.state.pager.currentPage;
+      const totalPages = this.state.pager.totalPages;
+      if (currentPage === totalPages) {
+        pager.currentPage = 1
+      } else {
+        pager.currentPage = currentPage + 1;
+      }
+      this.setState({
+        pager: pager
+      });
+      this.setPage(this.state.pager.currentPage);
+    }, 5000);
+  }
+
   setPage(page) {
+    clearInterval(this.timer);
+
     var items = this.props.items;
     var pager = this.state.pager;
 
@@ -42,6 +63,7 @@ class Pagination extends Component {
     var pageOfItems = items.slice(pager.startIndex, pager.endIndex + 1);
     this.setState({ pager: pager });
     this.props.onChangePage(pageOfItems);
+    this.autoRotate();
   }
 
   getPager(totalItems, currentPage, pageSize) {
