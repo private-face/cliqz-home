@@ -2,30 +2,44 @@ import React, { Component } from 'react';
 import Pagination from './Pagination';
 import Article from './Article';
 
+const styles = {
+  transition: 'all 0.5s ease-in-out'  
+};
+
 class News extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pageOfItems: []
+      pageOfItems: [],
+      opacity: 0
     }
 
     this.onChangePage = this.onChangePage.bind(this);
+    this.updateOpacity = this.updateOpacity.bind(this);
   }
 
   onChangePage(pageOfItems) {
-    this.setState({ pageOfItems: pageOfItems });
+    return Promise.resolve(this.setState({ pageOfItems: pageOfItems }));
+  }
+
+  updateOpacity(opacity) {
+    return Promise.resolve(this.setState({ opacity: opacity}))
   }
 
   render() {
     return (
       <div className="cliqz-news">
 
-        <Pagination items={this.props.news.data} onChangePage={this.onChangePage} />
+        <Pagination items={this.props.news.data}
+                    onChangePage={this.onChangePage}
+                    updateOpacity={this.updateOpacity} />
 
-        <div className="acordion" style={{height: "141px"}} id="news">
+        <div className="acordion" style={{height: "141px"}} 
+             id="news"
+             style={{...styles, opacity: this.state.opacity}}>
           {
             this.state.pageOfItems.map((article, i) => 
-              <Article article={article}/>
+              <Article key={i} article={article}/>
             )
           }
         </div>

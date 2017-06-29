@@ -21,13 +21,13 @@ class Pagination extends Component {
 
   componentWillMount() {
     if (this.props.items && this.props.items.length) {
-        this.setPage(this.props.initialPage);
+      this.setPage(this.props.initialPage);
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (this.props.items !== prevProps.items) {
-        this.setPage(this.props.initialPage);
+      this.setPage(this.props.initialPage);
     }
   }
 
@@ -49,20 +49,18 @@ class Pagination extends Component {
     }, 5000);
   }
 
-  setPage(page) {
+  animate(setNextPage) {
     clearInterval(this.timer);
+    this._fadeOut().then(() => {
+      setNextPage();
+      this._fadeIn();
+    });
+  }
 
-    var items = this.props.items;
-    var pager = this.state.pager;
-
-    if (page < 1 || page > pager.totalPages) {
-      return;
-    }
-
-    pager = this.getPager(items.length, page);
-    var pageOfItems = items.slice(pager.startIndex, pager.endIndex + 1);
-    this.setState({ pager: pager });
-    this.props.onChangePage(pageOfItems);
+  setPage(page) {
+    this.animate( () => {
+      this._setNextPage(page);
+    });
     this.autoRotate();
   }
 
@@ -89,6 +87,33 @@ class Pagination extends Component {
     };
   }
 
+  _setNextPage(page) {
+    var items = this.props.items;
+    var pager = this.state.pager;
+
+    if (page < 1 || page > pager.totalPages) {
+      return;
+    }
+
+    pager = this.getPager(items.length, page);
+    var pageOfItems = items.slice(pager.startIndex, pager.endIndex + 1);
+    this.setState({ pager: pager });
+
+    setTimeout(() => {
+      this.props.onChangePage(pageOfItems);
+    }, 400);
+  }
+
+  _fadeOut() {
+    return this.props.updateOpacity(0);
+  }
+
+  _fadeIn() {
+    setTimeout(() => {
+      this.props.updateOpacity(1)
+    }, 500);
+  }
+
   render() {
     let pager = this.state.pager;
     if (!pager.pages || pager.pages.length <= 1) {
@@ -96,7 +121,7 @@ class Pagination extends Component {
     }
 
     const newsItems = pager.pages.map((page, index) => {
-      return <a className={"button " + ( (page === pager.currentPage) ? 'active' : '') } onClick={() => this.setPage(page)}></a>
+      return <a key={index} className={"button " + ( (page === pager.currentPage) ? 'active' : '') } onClick={() => this.setPage(page)}></a>
     }
     );
     return (
