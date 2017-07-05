@@ -1,118 +1,57 @@
 import React, { Component } from 'react';
-import Logo from './Logo';
+import Pagination from './Pagination';
+import Article from './Article';
 
-const $$ = (selector, context = document) => Array.from(context.querySelectorAll(selector));
+const styles = {
+  transition: 'all 0.5s ease-in-out'  
+};
+
 class News extends Component {
-	constructor(props) {
-		super(props);
-		this.buttonClick = this.buttonClick.bind(this);
-	}
+  constructor(props) {
+    super(props);
+    this.state = {
+      pageOfItems: [],
+      opacity: 0
+    }
 
-	componentDidUpdate() {
+    this.onChangePage = this.onChangePage.bind(this);
+    this.updateOpacity = this.updateOpacity.bind(this);
+  }
+  
+  componentDidUpdate() {
 		if (this.props.news.data.length) {
 			window.newsReady();
 		}
 	}
 
-	_updatePage() {
-		const app = document.querySelector('#app');
+  onChangePage(pageOfItems) {
+    return Promise.resolve(this.setState({ pageOfItems: pageOfItems }));
+  }
 
-		const articles = Array.from(app.querySelectorAll('.article'));
-    const n = articles.length;
-    if (n <= 3) {
-        return;
-    }
+  updateOpacity(opacity) {
+    return Promise.resolve(this.setState({ opacity: opacity}))
+  }
 
-    if (this.state._currentPage * 3 >= n) {
-    	this.setState({
-    		_currentPage: 0
-    	});
-    }
-    articles.forEach((el) => el.classList.add('opaque'));
-    clearTimeout(this._animationTimeout);
+  render() {
+    return (
+      <div className="cliqz-news">
 
-    this._animationTimeout = setTimeout(() => {
-	    const start = this.state._currentPage * 3;
-	    const end = this.state._currentPage * 3 + 3;
-	    articles.forEach((el, i) => {
-        if (i >= start && i < end) {
-            el.style.display = 'block';
-            el.classList.remove('opaque');
-        } else {
-            el.style.display = 'none';
-        }
-	    });
-	    $$('a.button', app).forEach((e, i) => {
-	       e.classList[i === this.state._currentPage ? 'add' : 'remove']('active');
-	    });
-		}, 300);
+        <Pagination items={this.props.news.data}
+                    onChangePage={this.onChangePage}
+                    updateOpacity={this.updateOpacity} />
 
-	}
-
-	_startPageSwitch() {
-		clearInterval(this._switchPageTimeout);
-		this._switchPageTimeout = setInterval(this._nextPage.bind(this), 5e3);
-	}
-
-	_nextPage() {
-		const currentPage = this.state._currentPage++;
-		this.setState({
-			_currentPage: currentPage
-		}, () => {
-			this._updatePage();
-		});
-	}
-
-	buttonClick(event) {
-		const el = event.target;
-		if(!el.classList.contains('button') || el.classList.contains('active')) {
-			return;
-		}
-
-		const currentPage = +el.dataset.index
-		this.setState({
-			_currentPage: currentPage
-		}, () => {
-			this._updatePage();
-			this._startPageSwitch();
-		});
-
-	}
-
-	render() {
-		return (
-			<div className="cliqz-news">
-
-				<a href="#" className="active button" onClick={this.buttonClick} data-index="0"></a>
-				<a href="#" className="button" onClick={this.buttonClick} data-index="1"></a>
-				<a href="#" className="button" onClick={this.buttonClick} data-index="2"></a>
-
-				<div className="acordion" style={{height: "141px"}} id="news">
-					{
-						this.props.news.data.map(function(article, i) {
-							return <a href={article.url} key={i} className="article" style={{height: '129px'}}>
-								<div className="side-front">
-									<Logo logo={article.logo} />
-									<span className="source-name">
-										{article.displayUrl}
-									</span>
-									<p className="title">
-										{article.title}
-									</p>
-								</div>
-
-								<div className="side-back">
-									<p className="abstract">
-										{article.description}
-									</p>
-								</div>
-							</a>
-						})
-					}
-				</div>
-			</div>
-		);
-	}
+        <div className="acordion" style={{height: "141px"}} 
+             id="news"
+             style={{...styles, opacity: this.state.opacity}}>
+          {
+            this.state.pageOfItems.map((article, i) => 
+              <Article key={i} article={article}/>
+            )
+          }
+        </div>
+      </div>
+   );
+  }
 }
 
 export default News;
